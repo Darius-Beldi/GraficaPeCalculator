@@ -11,8 +11,8 @@
   03_03_resize.cpp
 D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator3\03_03_resize.cpp(52,10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator3\03_03_resize.cpp(52,41): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator3\03_03_resize.cpp(265,31): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
-D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator3\03_03_resize.cpp(265,21): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
+D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator3\03_03_resize.cpp(274,31): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
+D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator3\03_03_resize.cpp(274,21): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
   Laborator3.vcxproj -> D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator3\x64\Debug\Laborator3.exe
   0 File(s) copied
   0 File(s) copied

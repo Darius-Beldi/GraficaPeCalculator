@@ -89,6 +89,8 @@ void CreateVBO(void)
 		//y ul pentru fiecare forma sa apartina (0,50)
 
 		//poligon convex P1
+		//\ \operatorname{polygon}\left(\left(5,5\right),\left(5,10\right),\left(10,10\right),\left(10,5\right)\right)
+
 		10.0f, 10.0f, 0.0f, 0.2f,
 		10.0f, 20.0f, 0.0f, 0.2f,
 		20.0f, 20.0f, 0.0f, 0.2f,
@@ -105,6 +107,8 @@ void CreateVBO(void)
 
 
 		//poligon concav P2
+		//\operatorname{polygon}\left(\left(0,2\right),\left(1,4\right),\left(2,1\right),\left(1,1\right)\right)
+		//\operatorname{polygon}\left(\left(0,0\right),\left(2,1\right),\left(1,1\right)\right)
 		00.0f, 0.0f, 0.0f, 0.6f,
 		20.0f, 10.0f, 0.0f, 0.6f,
 		10.0f, 10.0f, 0.0f, 0.6f,
@@ -120,6 +124,11 @@ void CreateVBO(void)
 		10.0f, 10.0f, 0.0f, 0.6f,
 		20.0f, 10.0f, 0.0f, 0.6f,
 		10.0f, 40.0f, 0.0f, 0.6f,
+
+
+
+
+
 
 
 	};

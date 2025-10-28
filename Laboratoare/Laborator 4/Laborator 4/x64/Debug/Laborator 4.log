@@ -1,0 +1,17 @@
+﻿  D:freeglut.dll
+  D:glew32.dll
+  D:glew32s.dll
+  3 File(s) copied
+  D:glfw3.dll
+  D:glfw3dll.dll
+  D:glfw3_mt.dll
+  3 File(s) copied
+  D:SOIL.dll
+  1 File(s) copied
+  04_03_doua_VAO.cpp
+D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator 4\04_03_doua_VAO.cpp(271,31): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
+D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator 4\04_03_doua_VAO.cpp(271,21): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
+  Laborator 4.vcxproj -> D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator 4\x64\Debug\Laborator 4.exe
+  0 File(s) copied
+  0 File(s) copied
+  0 File(s) copied
