@@ -8,9 +8,13 @@
   3 File(s) copied
   D:SOIL.dll
   1 File(s) copied
-  04_03_doua_VAO.cpp
-D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator 4\04_03_doua_VAO.cpp(271,31): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
-D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator 4\04_03_doua_VAO.cpp(271,21): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
+  04_04_texturare.cpp
+D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator 4\04_04_texturare.cpp(267,31): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
+D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator 4\04_04_texturare.cpp(267,21): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
+SOIL.lib(SOIL.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(SOIL.obj)' or at 'D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator 4\x64\Debug\SOIL.pdb'; linking object as if no debug info
+SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(stb_image_aug.obj)' or at 'D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator 4\x64\Debug\SOIL.pdb'; linking object as if no debug info
+SOIL.lib(image_helper.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(image_helper.obj)' or at 'D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator 4\x64\Debug\SOIL.pdb'; linking object as if no debug info
+SOIL.lib(image_DXT.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(image_DXT.obj)' or at 'D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator 4\x64\Debug\SOIL.pdb'; linking object as if no debug info
   Laborator 4.vcxproj -> D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator 4\x64\Debug\Laborator 4.exe
   0 File(s) copied
   0 File(s) copied
