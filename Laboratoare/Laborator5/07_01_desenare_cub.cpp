@@ -71,10 +71,10 @@ void ProcessNormalKeys(unsigned char key, int x, int y)
 	case 'r':
 		vX -= 0.1;
 		break;
-	case '+':			//	Apasarea tastelor `-` si `+` schimba pozitia observatorului (se departeaza / aproprie);
+	case 'u':			//	Apasarea tastelor `-` si `+` schimba pozitia observatorului (se departeaza / aproprie);
 		obsZ -= 10;
 		break;
-	case '-':
+	case 'd':
 		obsZ += 10;
 		break;
 	}
@@ -115,61 +115,52 @@ void CreateShaders(void)
 //  In acesta se stocheaza date despre varfuri (coordonate, culori, indici, texturare etc.);
 void CreateVBO(void)
 {
-	//	Atributele varfurilor -  COORDONATE si CULORI;
+	// Atributele varfurilor - COORDONATE si CULORI;
 	GLfloat Vertices[] =
 	{
-		//	Varfurile VERZI din planul z = -50;  
-		//	Coordonate;					Culori;			
-		-50.0f, -50.0f, -50.0f,  1.0f,  0.0f, 1.0f, 0.0f,
-		 50.0f, -50.0f, -50.0f,  1.0f,  0.0f, 0.9f, 0.0f,
-		 50.0f,  50.0f, -50.0f,  1.0f,  0.0f, 0.6f, 0.0f,
-		-50.0f,  50.0f, -50.0f,  1.0f,	0.0f, 0.2f, 0.0f,
-		//	Varfurile ROSII din planul z = +50;
-		//	Coordonate;					Culori;			
-		-50.0f, -50.0f,  50.0f,  1.0f,  1.0f, 0.0f, 0.0f,
-		 50.0f, -50.0f,  50.0f,  1.0f,  0.7f, 0.0f, 0.0f,
-		 50.0f,  50.0f,  50.0f,  1.0f,  0.5f, 0.0f, 0.0f,
-		-50.0f,  50.0f,  50.0f,  1.0f,	0.1f, 0.0f, 0.0f,
+		// Baza (patrat, y = -50)
+		-50.0f, -50.0f, -50.0f,  1.0f,  0.0f, 1.0f, 0.0f, // 0
+		 50.0f, -50.0f, -50.0f,  1.0f,  0.0f, 0.9f, 0.0f, // 1
+		 50.0f, -50.0f,  50.0f,  1.0f,  0.0f, 0.6f, 0.0f, // 2
+		-50.0f, -50.0f,  50.0f,  1.0f,  0.0f, 0.2f, 0.0f, // 3
+		// Varful piramidei (apex, y = +50)
+		 0.0f,  50.0f,  0.0f,   1.0f,  1.0f, 0.0f, 0.0f  // 4
 	};
 
-	//  Indicii pentru varfuri;
+	// Indicii pentru fete si muchii
 	GLubyte Indices[] =
 	{
-		1, 0, 2,   2, 0, 3, //  Fata "de jos";
-		2, 3, 6,   6, 3, 7, //	Lateral;
-		7, 3, 4,   4, 3, 0, //	Lateral; 
-		4, 0, 5,   5, 0, 1, //	Lateral; 
-		1, 2, 5,   5, 2, 6, //	Lateral; 
-		5, 6, 4,   4, 6, 7,	//  Fata "de sus";
-		0, 1, 2, 3,			//	Contur fata de jos;
-		4, 5, 6, 7,			//	Contur fata de sus;
-		0, 4,				//	Muchie laterala;
-		1, 5,				//	Muchie laterala;
-		2, 6,				//	Muchie laterala;
-		3, 7				//	Muchie laterala;
+		// Baza (doua triunghiuri)
+		0, 1, 2,
+		0, 2, 3,
+		// Fete laterale (triunghiuri)
+		0, 1, 4,
+		1, 2, 4,
+		2, 3, 4,
+		3, 0, 4,
+		// Contur baza
+		0, 1, 2, 3,
+		// Muchii laterale
+		0, 4,
+		1, 4,
+		2, 4,
+		3, 4
 	};
 
-	//  Transmiterea datelor prin buffere;
-
-	//  Se creeaza / se leaga un VAO (Vertex Array Object);
-	glGenVertexArrays(1, &VaoId);                                                   //  Generarea VAO si indexarea acestuia catre variabila VaoId;
+	// Transmiterea datelor prin buffere;
+	glGenVertexArrays(1, &VaoId);
 	glBindVertexArray(VaoId);
 
-	//  Se creeaza un buffer pentru VARFURI - COORDONATE si CULORI;
-	glGenBuffers(1, &VboId);														//  Generarea bufferului si indexarea acestuia catre variabila VboId;
-	glBindBuffer(GL_ARRAY_BUFFER, VboId);											//  Setarea tipului de buffer - atributele varfurilor;
+	glGenBuffers(1, &VboId);
+	glBindBuffer(GL_ARRAY_BUFFER, VboId);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
 
-	//	Se creeaza un buffer pentru INDICI;
-	glGenBuffers(1, &EboId);														//  Generarea bufferului si indexarea acestuia catre variabila EboId;
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EboId);									//  Setarea tipului de buffer - atributele varfurilor;
+	glGenBuffers(1, &EboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EboId);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
 
-	//	Se activeaza lucrul cu atribute;
-	//  Se asociaza atributul (0 = coordonate) pentru shader;
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (GLvoid*)0);
-	//  Se asociaza atributul (1 =  culoare) pentru shader;
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (GLvoid*)(4 * sizeof(GLfloat)));
 }
@@ -219,52 +210,37 @@ void Initialize(void)
 //	Functia de desenare a graficii pe ecran;
 void RenderFunction(void)
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		//  Se curata ecranul OpenGL pentru a fi desenat noul continut (bufferul de culoare & adancime);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
 
-	//	CreateVBO(); //	 Decomentati acest rand daca este cazul;
 	glBindVertexArray(VaoId);
 	glBindBuffer(GL_ARRAY_BUFFER, VboId);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EboId);
 
-	//	Matricea de vizualizare;
-	//	Pozitia observatorului;
-	obs = glm::vec3(obsX, obsY, obsZ); 	
-	//	Pozitia punctului de referinta;
+	obs = glm::vec3(obsX, obsY, obsZ);
 	refX = obsX; refY = obsY;
 	pctRef = glm::vec3(refX, refY, refZ);
-	//	Verticala din planul de vizualizare; 
 	vert = glm::vec3(vX, 1.0f, 0.0f);
 	view = glm::lookAt(obs, pctRef, vert);
 	glUniformMatrix4fv(viewLocation, 1, GL_FALSE, &view[0][0]);
 
-	//	Realizarea proiectiei - pot fi testate si alte variante;
 	projection = glm::ortho(xMin, xMax, yMin, yMax, dNear, dFar);
-	//	projection = glm::frustum(xMin, xMax, yMin, yMax, dNear, dFar);
-	//	projection = glm::perspective(fov, GLfloat(width) / GLfloat(height), dNear, dFar);
-	//	projection = glm::infinitePerspective(fov, GLfloat(width) / GLfloat(height), dNear); 
 	glUniformMatrix4fv(projLocation, 1, GL_FALSE, &projection[0][0]);
 
-	//	Desenarea fetelor;
-	codCol = 0;															//  Culoarea;
-	glUniform1i(codColLocation, codCol);								//	Transmiterea variabilei uniforme pentru COLORARE spre shadere;
-	//	Functia glDrawElements primeste 4 argumente:
-	//	 - arg1 = modul de desenare;
-	//	 - arg2 = numarul de varfuri;
-	//	 - arg3 = tipul de date al indicilor;
-	//	 - arg4 = pointer spre indici (EBO): pozitia de start a indicilor;
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, (void*)(0));
+	// Desenarea fetelor
+	codCol = 0;
+	glUniform1i(codColLocation, codCol);
+	glDrawElements(GL_TRIANGLES, 18, GL_UNSIGNED_BYTE, (void*)(0)); // 6 triunghiuri * 3 indici
 
-	//  Desenarea muchiilor;
-	codCol = 1;															//	Se schimba culoarea;
+	// Desenarea muchiilor
+	codCol = 1;
 	glUniform1i(codColLocation, codCol);
 	glLineWidth(3.5);
-	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_BYTE, (void*)(36));
-	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_BYTE, (void*)(40));
-	glDrawElements(GL_LINES, 8, GL_UNSIGNED_BYTE, (void*)(44));
+	glDrawElements(GL_LINE_LOOP, 4, GL_UNSIGNED_BYTE, (void*)(18)); // baza
+	glDrawElements(GL_LINES, 8, GL_UNSIGNED_BYTE, (void*)(22));     // muchii laterale
 
-	glutSwapBuffers();	//	Inlocuieste imaginea deseneata in fereastra cu cea randata; 
-	glFlush();			//  Asigura rularea tuturor comenzilor OpenGL apelate anterior;
+	glutSwapBuffers();
+	glFlush();
 }
 
 //	Punctul de intrare in program, se ruleaza rutina OpenGL;
