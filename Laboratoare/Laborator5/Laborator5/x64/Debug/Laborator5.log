@@ -10,10 +10,12 @@
   1 File(s) copied
   07_02b_instanced_rendering.cpp
 D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator5\07_02b_instanced_rendering.cpp(43,20): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
-D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator5\07_02b_instanced_rendering.cpp(63,9): warning C4305: '+=': truncation from 'double' to 'float'
-D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator5\07_02b_instanced_rendering.cpp(66,9): warning C4305: '-=': truncation from 'double' to 'float'
-D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator5\07_02b_instanced_rendering.cpp(256,31): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
-D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator5\07_02b_instanced_rendering.cpp(256,21): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
+D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator5\07_02b_instanced_rendering.cpp(57,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator5\07_02b_instanced_rendering.cpp(57,37): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator5\07_02b_instanced_rendering.cpp(84,11): warning C4305: '-=': truncation from 'double' to 'float'
+D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator5\07_02b_instanced_rendering.cpp(87,11): warning C4305: '+=': truncation from 'double' to 'float'
+D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator5\07_02b_instanced_rendering.cpp(275,31): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
+D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator5\07_02b_instanced_rendering.cpp(275,21): warning C4244: 'argument': conversion from 'GLfloat' to 'int', possible loss of data
   Laborator5.vcxproj -> D:\Facultate 2\An3Sem1\GraficaPeCalculator\Laboratoare\Laborator5\x64\Debug\Laborator5.exe
   0 File(s) copied
   0 File(s) copied

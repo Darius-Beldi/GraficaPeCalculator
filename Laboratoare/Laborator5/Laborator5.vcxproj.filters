@@ -90,17 +90,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\imageloader.cpp">
-      <Filter>Source Files\template-built-ins\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="src\loadShaders.cpp">
-      <Filter>Source Files\template-built-ins\Utils</Filter>
-    </ClCompile>
     <ClCompile Include="src\glad.c">
       <Filter>Source Files\template-built-ins\GLAD</Filter>
     </ClCompile>
     <ClCompile Include="include\glm\detail\glm.cpp">
       <Filter>Header Files\template-built-ins\glm\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imageloader.cpp">
+      <Filter>Source Files\template-built-ins\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\loadShaders.cpp">
+      <Filter>Source Files\template-built-ins\Utils</Filter>
     </ClCompile>
     <ClCompile Include="07_02b_instanced_rendering.cpp">
       <Filter>Source Files\template-built-ins</Filter>

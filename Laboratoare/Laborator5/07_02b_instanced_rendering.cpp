@@ -48,52 +48,68 @@ GLfloat
 glm::mat4
 	view, projection;
 
-// Elemente pentru matricea de vizualizare;
-// Observatorul este initial in (0, 0, -800) si se uita spre (0, 0, 800)
-float obsX = 0.0, obsY = 0.0, obsZ = -800.f,
-	  refX = 0.0f, refY = 0.0f, refZ = 800.f,
-      vX = 0.0;
+float obsX, obsY, obsZ; // Noile coordonate ale observatorului
+
+// Elemente pentru survolare (coordonate sferice) - preluate din 07_03
+float refX = 0.0f, refY = 0.0f, refZ = 0.0f; // Punctul de referinta (centrul scenei)
+float vX = 0.0f, vY = 0.0f, vZ = 1.0f;       // Verticala din planul de vizualizare
+float alpha = 0.0f, beta = 0.0f, dist = 800.0f; // Unghiurile sferice si distanta
+float incrAlpha1 = 0.01, incrAlpha2 = 0.01; // Incrementii pentru unghiul alpha
 //	Elemente pentru matricea de proiectie;
 float width = 800, height = 600, dNear = 1, fovdeg = 90;
-
 void ProcessNormalKeys(unsigned char key, int x, int y)
 {
-	switch (key) {	
-	case 'l':		//	Apasarea tastelor `l` si `r` modifica pozitia verticalei in planul de vizualizare;
-		vX += 0.1;
-		break;
-	case 'r':
-		vX -= 0.1;
-		break;
-	case '+':		//	Apasarea tastelor `+` si `-` schimba pozitia observatorului  
-		obsZ += 10; //  Creste z - se apropie de punctul de referinta
+	switch (key) {
+		// case 'l':		//	Elimina vechile controale de verticala
+		// 	vX += 0.1;
+		// 	break;
+		// case 'r':
+		// 	vX -= 0.1;
+		// 	break;
+	case '+':		//	Apasarea tastelor `+` si `-` schimba pozitia observatorului (se apropie / departeaza);
+		dist -= 10.0; // Am marit valoarea de deplasare pentru ca distanta initiala e mai mare (800)
+		if (dist < 100.0) dist = 100.0; // O distanta minima de siguranta
 		break;
 	case '-':
-		obsZ -= 10; //  Scade z - se departeaza de punctul de referinta
+		dist += 10.0;
 		break;
 	}
 	if (key == 27)
 		exit(0);
 }
-
 void ProcessSpecialKeys(int key, int xx, int yy) {
 	switch (key)				//	Procesarea tastelor 'LEFT', 'RIGHT', 'UP', 'DOWN';
-	{							//	duce la deplasarea observatorului pe axele Ox si Oy;
+	{							//	duce la deplasarea observatorului pe suprafata sferica in jurul centrului;
 	case GLUT_KEY_LEFT:
-		obsX -= 20;
+		beta -= 0.01; // Rotatie in jurul axei Oy
 		break;
 	case GLUT_KEY_RIGHT:
-		obsX += 20;
+		beta += 0.01; // Rotatie in jurul axei Oy
 		break;
 	case GLUT_KEY_UP:
-		obsY += 20;
+		alpha += incrAlpha1; // Rotatie in plan vertical (latitudine)
+		if (abs(alpha - PI / 2) < 0.05)
+		{
+			incrAlpha1 = 0.f; // Blocheaza la Polul Nord
+		}
+		else
+		{
+			incrAlpha1 = 0.01f;
+		}
 		break;
 	case GLUT_KEY_DOWN:
-		obsY -= 20;
+		alpha -= incrAlpha2; // Rotatie in plan vertical (latitudine)
+		if (abs(alpha + PI / 2) < 0.05)
+		{
+			incrAlpha2 = 0.f; // Blocheaza la Polul Sud
+		}
+		else
+		{
+			incrAlpha2 = 0.01f;
+		}
 		break;
 	}
 }
-
 //  Crearea si compilarea obiectelor de tip shader;
 //	Trebuie sa fie in acelasi director cu proiectul actual;
 //  Shaderul de varfuri / vertex shader - afecteaza geometria scenei;
@@ -215,14 +231,17 @@ void RenderFunction(void)
 	glBindBuffer(GL_ARRAY_BUFFER, VbPos);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EboId);
 
+	//	Pozitia observatorului - se deplaseaza pe sfera;
+	obsX = refX + dist * cos(alpha) * cos(beta);
+	obsY = refY + dist * cos(alpha) * sin(beta);
+	obsZ = refZ + dist * sin(alpha);
+
 	//	Matricea de vizualizare;
-	glm::vec3 Obs = glm::vec3(obsX, obsY, obsZ);
-	refX = obsX; refY = obsY;
-	glm::vec3 PctRef = glm::vec3(refX, refY, refZ);
-	glm::vec3 Vert = glm::vec3(vX, 1.0f, 0.0f);
+	glm::vec3 Obs = glm::vec3(obsX, obsY, obsZ);		//	Pozitia observatorului;	
+	glm::vec3 PctRef = glm::vec3(refX, refY, refZ); 	//	Pozitia punctului de referinta;
+	glm::vec3 Vert = glm::vec3(vX, vY, vZ);				//	Verticala din planul de vizualizare; 
 	view = glm::lookAt(Obs, PctRef, Vert);
 	glUniformMatrix4fv(viewLocation, 1, GL_FALSE, &view[0][0]);
- 
 	//	Desenarea fetelor;
 	codCol = 0;															//  Culoarea;
 	glUniform1i(codColLocation, codCol);								//	Transmiterea variabilei uniforme pentru COLORARE spre shadere;
