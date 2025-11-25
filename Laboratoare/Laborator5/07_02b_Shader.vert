@@ -79,7 +79,7 @@ void main(void)
 
 	// Generarea matricei de translatie
 	matrTransl=translate
-	(90 * instID * sin(instID), 90 * instID *  cos(instID), 0.0);
+	(90 * instID * sin(instID), 90 * instID *  cos(instID), 20.0 * instID);
     
 	// Matricea de rotatie este produsul a trei rotatii
 	matrRot = rotateX((instID + 1) * PI / 10) 
